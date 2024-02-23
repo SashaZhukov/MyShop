@@ -38,7 +38,7 @@
                         </div>
                         <a href="#" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Category</a>
                         <a href="#" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Company</a>
-                        <a href="{{ route('product.list') }}" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Stores</a>
+                        <a href="{{ route('products.index') }}" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Stores</a>
                     </div>
                 </div>
                 @if( auth()->check())
@@ -55,7 +55,7 @@
                     </div>
                     @endif
                     <div class="ml-8">
-                        <a href="{{ empty($currency) ? '' : route('currency.list') }}">{{ empty($currency) ? 'USD' : $currency->currency }}</a>
+                        <a href="{{ empty($currency) ? '' : route('currencies.index') }}">{{ empty($currency) ? 'USD' : $currency->currency }}</a>
                     </div>
 
                     <div class="flex lg:ml-6">

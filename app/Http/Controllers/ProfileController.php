@@ -17,10 +17,10 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        if (!$request->session()->has('currency')){
+        if (!$request->session()->has('currencies')){
             $currency = Currency::find(1);
         } else {
-            $currency = Currency::find($request->session()->get('currency'));
+            $currency = Currency::find($request->session()->get('currencies'));
         }
 
         return view('profile.edit', [

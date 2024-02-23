@@ -20,6 +20,10 @@ class Product extends Model
         'status'
     ];
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
     public function sizes()
     {
         return $this->hasManyThrough(Size::class, ProductSize::class, 'size_id', 'id');

@@ -11,16 +11,16 @@ class CurrencyController extends Controller
     {
         $currencies = Currency::all();
 
-        return view('currency.currency-choice', compact('currencies'));
+        return view('currencies.currencies-choice', compact('currencies'));
     }
 
     public function store(Request $request)
     {
 
-        $currency = Currency::find($request->get('currency'));
+        $currency = Currency::find($request->get('currencies'));
 
 
-        $request->session()->put('currency', $request->get('currency', ));
+        $request->session()->put('currencies', $request->get('currencies', ));
 
 
         return redirect()->route('home');

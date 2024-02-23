@@ -20,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomePageController::class, 'index'])->name('home');
 
-Route::prefix('/currency')->group(function () {
-    Route::get('/choice', [CurrencyController::class, 'index'])->name('currency.list');
+Route::prefix('/currencies')->group(function () {
+    Route::get('/choice', [CurrencyController::class, 'index'])->name('currencies.index');
 });
 
 Route::middleware('auth')->group(function () {
@@ -30,9 +30,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::prefix('/product')->group(function () {
-    Route::get('/list', [ProductController::class, 'index'])->name('product.list');
+Route::prefix('/products')->group(function () {
+    Route::get('/list', [ProductController::class, 'index'])->name('products.index');
     Route::get('/list/{product}', [ProductController::class, 'show'])->name('product.show');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/review/add/{product}', [ReviewController::class, 'create'])->name('review.create');
+    Route::post('/review/store', [ReviewController::class, 'store'])->name('review.store');
 });
 
 require __DIR__.'/auth.php';
