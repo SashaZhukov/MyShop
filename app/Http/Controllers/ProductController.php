@@ -48,8 +48,7 @@ class ProductController extends Controller
             $result[] = $k * $v;
         }
 
-        $avgCountEvaluation = array_sum($result) / $allCountReviews;
-
+        $avgCountEvaluation = round(array_sum($result) / $allCountReviews);
         return view('products.show', compact('product', 'reviewsViews', 'reviewsEvaluation', 'avgCountEvaluation', 'allCountReviews', 'reviews', 'status', 'sizes', 'currency', 'productInfo'));
     }
 
