@@ -33,17 +33,12 @@
                 <h2 class="mt-2.5 text-red-600" style="font-size: 14px">{{ $message }}</h2>
                 @enderror
             </div>
-
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    Forgot your password?
-                </a>
-            @endif
-            <br>
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
                 No account? Sign Up
             </a>
-
+            <div>
+                <a href="{{ route('github.auth') }}"><button type="button" class="btn btn-dark">GitHub</button></a>
+            </div>
             <div>
                 <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log in</button>
             </div>

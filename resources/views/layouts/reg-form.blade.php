@@ -52,7 +52,9 @@
                 <h2 class="mt-2.5 text-red-600" style="font-size: 14px">{{ $message }}</h2>
                 @enderror
             </div>
-
+            <div class="mt-2">
+            <a href="{{ route('github.auth') }}"><button type="button" class="btn btn-dark">GitHub</button></a>
+            </div>
             <div>
                 <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create</button>
             </div>

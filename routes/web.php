@@ -40,5 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/review/store', [ReviewController::class, 'store'])->name('review.store');
 });
 
+
+require __DIR__.'/githubAuth.php';
 require __DIR__.'/auth.php';
 require __DIR__.'/administration.php';
