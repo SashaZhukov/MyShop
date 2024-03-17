@@ -12,6 +12,8 @@ class HomeController extends Controller
     {
         $productCount = Product::all()->count();
         $userCount = User::all()->count();
-        return view('admin.home.index', compact('productCount', 'userCount'));
+
+
+        return view('admin.home.index', compact('productCount',  'userCount'));
     }
 }

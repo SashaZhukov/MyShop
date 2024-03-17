@@ -1,7 +1,8 @@
 @extends('admin.layouts.admin-layouts')
 @section('title', 'UserShow')
 @section('content')
-    @include('admin.layouts.user-pages-layout')
+    @section('PageLogo', 'Users')
+    @include('admin.layouts.logo-layout')
     <div class="mt-8" style="margin-left: 290px">
         <table class="table">
             <thead>
@@ -13,12 +14,12 @@
             </tr>
             </thead>
             <tbody class="table-group-divider">
-                <tr>
-                    <th scope="row">{{ $user->id }}</th>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->role }}</td>
-                    <td><a href="{{ route('users.edit', $user->id) }}">Edit role</a></td>
-                </tr>
+            <tr>
+                <th scope="row">{{ $user->id }}</th>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->role }}</td>
+                <td><a href="{{ route('users.edit', $user->id) }}">Edit role</a></td>
+            </tr>
             </tbody>
         </table>
         <div class="mt-4">

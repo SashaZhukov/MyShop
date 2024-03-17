@@ -22,6 +22,7 @@ Route::get('/', [HomePageController::class, 'index'])->name('home');
 
 Route::prefix('/currencies')->group(function () {
     Route::get('/choice', [CurrencyController::class, 'index'])->name('currencies.index');
+    Route::post('/', [CurrencyController::class, 'store'])->name('currencies.store');
 });
 
 Route::middleware('auth')->group(function () {

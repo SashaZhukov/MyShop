@@ -17,9 +17,9 @@ class ReviewController extends Controller
     {
         $newReview = $request->validate([
             'comment' => 'required',
-            'user_name' => '',
-            'evaluation' => '',
-            'product_id' => '',
+            'user_name' => 'required',
+            'evaluation' => 'required',
+            'product_id' => 'required',
         ]);
 
         Review::create($newReview);

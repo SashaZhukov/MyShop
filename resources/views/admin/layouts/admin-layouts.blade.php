@@ -54,9 +54,16 @@
             </div>
             <nav class="mt-2">
                 <ul class="nav nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item">
+                        <a href="{{ route('admin.home') }}" class="nav-link {{ str_contains($_SERVER['REQUEST_URI'], '/admin/home') ? 'active' : '' }}">
+                            <p>
+                                Home
+                            </p>
+                        </a>
+                    </li>
                     @if(auth()->user()->hasRole('admin'))
-                    <li class="nav-item menu-open">
-                        <a href="{{ route('admin.home') }}" class="nav-link {{ route('admin.home') ? 'active' : '' }}">
+                    <li class="nav-item">
+                        <a class="nav-link {{ str_contains($_SERVER['REQUEST_URI'], '/admin/PagesForAdmin') ? 'active' : '' }}">
                             <i class="nav-icon"><img width="20px" height="20px" src="/Uploads/AdminIcons/supply-chain.png"></i>
                             <p>
                                 For admin
@@ -72,6 +79,11 @@
                             <li class="nav-item">
                                 <a href="{{ route('users.index') }}" class="nav-link">
                                     <p>Users</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('roles.index') }}" class="nav-link">
+                                    <p>Roles</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -108,8 +120,8 @@
                             </li>
                         </ul>
                     </li>
+                    @endif
                 </ul>
-            @endif
             </nav>
         </div>
         <!-- /.sidebar -->

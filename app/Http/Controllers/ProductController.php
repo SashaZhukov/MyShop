@@ -46,10 +46,16 @@ class ProductController extends Controller
         foreach ($reviewsEvaluation as $k=>$v)
         {
             $result[] = $k * $v;
+
         }
 
-        $avgCountEvaluation = round(array_sum($result) / $allCountReviews);
-        return view('products.show', compact('product', 'reviewsViews', 'reviewsEvaluation', 'avgCountEvaluation', 'allCountReviews', 'reviews', 'status', 'sizes', 'currency', 'productInfo'));
+        if (isset($result)) {
+            $avgCountEvaluation = round(array_sum($result) / $allCountReviews);
+            return view('products.show', compact('product', 'reviewsViews', 'reviewsEvaluation', 'avgCountEvaluation', 'allCountReviews', 'reviews', 'status', 'sizes', 'currency', 'productInfo'));
+        }
+
+        return view('products.show', compact('product', 'reviewsViews', 'reviewsEvaluation', 'allCountReviews', 'reviews', 'status', 'sizes', 'currency', 'productInfo'));
+
     }
 
 }

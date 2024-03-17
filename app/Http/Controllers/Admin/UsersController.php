@@ -60,6 +60,7 @@ class UsersController extends Controller
     public function show(string $id)
     {
         $user = User::find($id);
+
         return view('admin.pagesForAdmin.users.user-show', compact('user'));
     }
 
@@ -68,11 +69,11 @@ class UsersController extends Controller
      */
     public function edit(string $id)
     {
-        $user_id = $id;
+        $user = User::find($id);
         $roles = DB::table('roles')
             ->select('name', 'id')
             ->get();
-        return view('admin.pagesForAdmin.users.user-edit', compact('user_id', 'roles'));
+        return view('admin.pagesForAdmin.users.user-edit', compact('user', 'roles'));
     }
 
     /**
