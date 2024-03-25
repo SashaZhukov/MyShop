@@ -16,7 +16,7 @@
                     <h2 id="information-heading" class="sr-only">Product information</h2>
 
                     <div class="flex items-center">
-                        <p class="text-lg text-gray-900 sm:text-xl">{{ $product->price *  (empty($currency) ? 1 : $currency->value )}} {{ empty($currency) ? 'USD' : $currency->name }}</p>
+                        <p class="text-lg text-gray-900 sm:text-xl">{{ $product->price *  ($currency === 0 ? 1 : $currencyActive->value )}} {{ $currency === 0 ? 'USD' : $currencyActive->name }}</p>
 
                         <div class="ml-4 border-l border-gray-300 pl-4">
                             <h2 class="sr-only">Reviews</h2>

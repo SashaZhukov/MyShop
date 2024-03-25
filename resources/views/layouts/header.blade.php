@@ -55,7 +55,7 @@
                     </div>
                     @endif
                     <div class="ml-8">
-                        <a href="{{ empty($currency) ? '' : route('currencies.index') }}">{{ empty($currency) ? 'USD' : $currency->name }}</a>
+                        <a href="{{ $currency === 0 ? '' : route('currencies.index') }}">{{ empty($currencyActive) ? 'USD' : $currencyActive->name }}</a>
                     </div>
 
                     <div class="flex lg:ml-6">

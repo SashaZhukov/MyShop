@@ -23,97 +23,41 @@
                         </button>
 
                         <div class="hidden lg:block">
-                            <form class="space-y-10 divide-y divide-gray-200">
-                                <div>
-                                    <fieldset>
-                                        <legend class="block text-sm font-medium text-gray-900">Color</legend>
-                                        <div class="space-y-3 pt-6">
-                                            <div class="flex items-center">
-                                                <input id="color-0" name="color[]" value="white" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="color-0" class="ml-3 text-sm text-gray-600">White</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="color-1" name="color[]" value="beige" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="color-1" class="ml-3 text-sm text-gray-600">Beige</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="color-2" name="color[]" value="blue" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="color-2" class="ml-3 text-sm text-gray-600">Blue</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="color-3" name="color[]" value="brown" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="color-3" class="ml-3 text-sm text-gray-600">Brown</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="color-4" name="color[]" value="green" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="color-4" class="ml-3 text-sm text-gray-600">Green</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="color-5" name="color[]" value="purple" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="color-5" class="ml-3 text-sm text-gray-600">Purple</label>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </div>
+                            <form action="{{ route('products.index') }}" method="get" class="space-y-10 divide-y divide-gray-200">
                                 <div class="pt-10">
                                     <fieldset>
-                                        <legend class="block text-sm font-medium text-gray-900">Category</legend>
                                         <div class="space-y-3 pt-6">
-                                            <div class="flex items-center">
-                                                <input id="category-0" name="category[]" value="new-arrivals" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="category-0" class="ml-3 text-sm text-gray-600">All New Arrivals</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="category-1" name="category[]" value="tees" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="category-1" class="ml-3 text-sm text-gray-600">Tees</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="category-2" name="category[]" value="crewnecks" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="category-2" class="ml-3 text-sm text-gray-600">Crewnecks</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="category-3" name="category[]" value="sweatshirts" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="category-3" class="ml-3 text-sm text-gray-600">Sweatshirts</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="category-4" name="category[]" value="pants-shorts" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="category-4" class="ml-3 text-sm text-gray-600">Pants &amp; Shorts</label>
-                                            </div>
+                                            <legend class="block text-sm font-medium text-gray-900">Category</legend>
+                                                <select name="category_id" class="form-select form-select-sm">
+                                                    <option disabled {{ empty(request()->category_id) ? 'selected' : ''}}>Select Category</option>
+                                                    @foreach($categories as $category)
+                                                        <option {{ $category->id == request()->category_id ? 'selected' : '' }} value="{{$category->id}}">{{ $category->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                        </div>
+                                        <div class="space-y-3 pt-6">
+                                            <legend class="block text-sm font-medium text-gray-900">Colors</legend>
+                                            <select name="color_id" class="form-select form-select-sm">
+                                                <option disabled {{ empty(request()->color_id) ? 'selected' : ''}}>Select Color</option>
+                                                @foreach($colors as $color)
+                                                    <option {{ $color->id == request()->color_id ? 'selected' : '' }} value="{{$color->id}}">{{ $color->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="space-y-3 pt-6">
+                                            <legend class="block text-sm font-medium text-gray-900">Sizes</legend>
+                                            <select name="size_id" class="form-select form-select-sm">
+                                                <option disabled {{ empty(request()->size_id) ? 'selected' : ''}}>Select Size</option>
+                                                @foreach($sizes as $size)
+                                                    <option {{ $size->id == request()->size_id ? 'selected' : '' }} value="{{$size->id}}">{{ $size->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </fieldset>
                                 </div>
-                                <div class="pt-10">
-                                    <fieldset>
-                                        <legend class="block text-sm font-medium text-gray-900">Sizes</legend>
-                                        <div class="space-y-3 pt-6">
-                                            <div class="flex items-center">
-                                                <input id="sizes-0" name="sizes[]" value="xs" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="sizes-0" class="ml-3 text-sm text-gray-600">XS</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="sizes-1" name="sizes[]" value="s" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="sizes-1" class="ml-3 text-sm text-gray-600">S</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="sizes-2" name="sizes[]" value="m" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="sizes-2" class="ml-3 text-sm text-gray-600">M</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="sizes-3" name="sizes[]" value="l" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="sizes-3" class="ml-3 text-sm text-gray-600">L</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="sizes-4" name="sizes[]" value="xl" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="sizes-4" class="ml-3 text-sm text-gray-600">XL</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="sizes-5" name="sizes[]" value="2xl" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="sizes-5" class="ml-3 text-sm text-gray-600">2XL</label>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </div>
+                                <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Apply</button>
                             </form>
+                            <a href="{{ route('products.index') }}"><button type="submit" class="mt-4 flex w-full justify-center rounded-md bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Clean</button></a>
                         </div>
                     </aside>
                     <!-- Product grid -->
@@ -128,7 +72,7 @@
                                                 <img src="{{ $product->img }}" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." class="h-full w-full object-cover object-center group-hover:opacity-75">
                                             </div>
                                             <h3 class="mt-4 text-sm text-gray-700">{{ $product->name }}</h3>
-                                            <p class="mt-1 text-lg font-medium text-gray-900">{{ $product->price *  (empty($currency) ? 1 : $currency->value )}} {{ empty($currency) ? 'USD' : $currency->currency }}</p>
+                                            <p class="mt-1 text-lg font-medium text-gray-900">{{ $product->price *  ($currency === 0 ? 1 : $currencyActive->value )}} {{ $currency === 0 ? 'USD' : $currencyActive->name }}</p>
                                         </a>
                                     @endforeach
                                 </div>

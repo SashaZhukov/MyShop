@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Filters\QueryFilter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Product extends Model
 {
@@ -26,6 +28,16 @@ class Product extends Model
     }
     public function sizes()
     {
-        return $this->hasManyThrough(Size::class, ProductSize::class, 'size_id', 'id');
+        return $this->belongsToMany(Size::class, ProductSize::class, 'size_id', 'id');
+    }
+
+    public function colors()
+    {
+        return $this->belongsToMany(Color::class, ProductColor::class, 'color_id', 'id');
+    }
+
+    public function category()
+    {
+        $this->belongsTo(Category::class);
     }
 }

@@ -17,15 +17,12 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        if (!$request->session()->has('currencies')){
-            $currency = Currency::find(1);
-        } else {
-            $currency = Currency::find($request->session()->get('currencies'));
-        }
+        $currencyActive = Currency::find($request->session()->get('currencies'));
+        $currency = Currency::all()->count();
 
         return view('profile.edit', [
             'user' => $request->user(),
-        ], compact('currency'));
+        ], compact('currency', 'currencyActive'));
     }
 
     /**

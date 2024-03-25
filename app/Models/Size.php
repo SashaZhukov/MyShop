@@ -12,6 +12,6 @@ class Size extends Model
 
     public function products()
     {
-        return $this->hasManyThrough(Product::class, ProductSize::class, 'product_id', 'id');
+        return $this->belongsToMany(Product::class, ProductSize::class, 'product_id', 'id');
     }
 }
