@@ -11,6 +11,7 @@ class HomePageController extends Controller
     {
         $currencyActive = Currency::find($request->session()->get('currencies'));
         $currency = Currency::all()->count();
+
         return view('main', compact( 'request', 'currencyActive', 'currency'));
     }
 }

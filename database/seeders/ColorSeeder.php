@@ -15,13 +15,16 @@ class ColorSeeder extends Seeder
     public function run(): void
     {
         DB::table('colors')->insert([
-            'name' => 'red'
+            'name' => 'red',
+            'hex-code' => '#FF0000'
         ]);
         DB::table('colors')->insert([
-            'name' => 'blue'
+            'name' => 'blue',
+            'hex-code' => '#00FFE4'
         ]);
         DB::table('colors')->insert([
-            'name' => 'black'
+            'name' => 'black',
+            'hex-code' => '#000000'
         ]);
     }
 }

@@ -12,13 +12,14 @@ use App\Models\Review;
 use App\Models\ReviewProduct;
 use App\Models\Size;
 use App\Services\ProductFilterService;
+use App\Services\ReviewCalculatorService;
 use Database\Seeders\CategorySeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function index(Request $request, ProductFilterService $productCategoryFilterService)
+    public function index(Request $request, ProductFilterService $productFilterService)
     {
         $currencyActive = Currency::find($request->session()->get('currencies'));
         $currency = Currency::all()->count();
@@ -26,44 +27,40 @@ class ProductController extends Controller
         $sizes = Size::all();
         $colors = Color::all();
 
-        $products = $productCategoryFilterService->categoryFilter($request->input('category_id'), $request->input('color_id'), $request->input('size_id'));
+        $products = $productFilterService->filter($request->input('category_id'), $request->input('color_id'), $request->input('size_id'));
 
         return view('products.list', compact('products', 'colors', 'sizes', 'currency', 'currencyActive', 'categories'));
     }
 
-    public function show(Product $product, Request $request)
+    public function show(Product $product, Request $request, ReviewCalculatorService $reviewCalculator)
     {
         $currencyActive = Currency::find($request->session()->get('currencies'));
         $currency = Currency::all()->count();
-
         $status = Product::find($product->id)->status;
         $sizesId = ProductSize::where('product_id', $product->id)->pluck('size_id');
         $sizes = Size::find($sizesId);
         $productInfo = ProductSize::where('product_id', $product->id)->where('status', true)->pluck('size_id');
+        $colors = $product->colors()->get();
 
-        $reviews = Review::where('product_id', $product->id)->get();
-        $reviewsViews = Review::where('product_id', $product->id)->paginate(4);
-        $reviewsEvaluation = DB::table('reviews')
-            ->selectRaw('evaluation, count(evaluation) as cnt')
-            ->groupBy('evaluation')
-            ->get()
-            ->pluck('cnt', 'evaluation')
-            ->toArray();
+        $countReviewsForProduct = Review::where('product_id', $product->id)->count();
+        $reviewsForProduct = Review::where('product_id', $product->id)->paginate(6);
 
-        $allCountReviews = count($reviews);
+        $arr = $reviewCalculator->caulculate($countReviewsForProduct, $product->id);
+        $avgRating = $arr['avgRating'];
+        $ratingPercentage = $arr['ratingsPercentage'];
 
-        foreach ($reviewsEvaluation as $k=>$v)
-        {
-            $result[] = $k * $v;
-
-        }
-
-        if (isset($result)) {
-            $avgCountEvaluation = round(array_sum($result) / $allCountReviews);
-            return view('products.show', compact('product', 'reviewsViews', 'reviewsEvaluation', 'avgCountEvaluation', 'allCountReviews', 'reviews', 'status', 'sizes', 'currency', 'productInfo'));
-        }
-
-        return view('products.show', compact('product', 'reviewsViews', 'reviewsEvaluation', 'allCountReviews', 'reviews', 'status', 'sizes', 'currency', 'productInfo', 'currencyActive'));
+        return view('products.show')
+            ->with('product', $product)
+            ->with('colors', $colors)
+            ->with('reviewsForProduct', $reviewsForProduct)
+            ->with('status', $status)
+            ->with('sizes', $sizes)
+            ->with('currency', $currency)
+            ->with('productInfo', $productInfo)
+            ->with('currencyActive', $currencyActive)
+            ->with('avgRating', $avgRating)
+            ->with('ratingPercentage', $ratingPercentage)
+            ->with('countReviewsForProduct', $countReviewsForProduct);
 
     }
 

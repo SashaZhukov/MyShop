@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CurrencyController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\HomePageController;
-use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\{ProfileController,
+CurrencyController,
+ProductController,
+HomePageController,
+ReviewController,
+CartController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,16 +30,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/review/add/{product}', [ReviewController::class, 'create'])->name('review.create');
+    Route::post('/review/store{productId}', [ReviewController::class, 'store'])->name('review.store');
+    Route::post('cart/add{productId}', [CartController::class, 'addToCart'])->name('add.product.toCart');
+    Route::delete('cart/remove{productId}', [CartController::class, 'remove'])->name('product.remove');
 });
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
 Route::prefix('/products')->group(function () {
     Route::get('/list', [ProductController::class, 'index'])->name('products.index');
     Route::get('/list/{product}', [ProductController::class, 'show'])->name('product.show');
-});
-
-Route::middleware('auth')->group(function () {
-    Route::get('/review/add/{product}', [ReviewController::class, 'create'])->name('review.create');
-    Route::post('/review/store', [ReviewController::class, 'store'])->name('review.store');
 });
 
 

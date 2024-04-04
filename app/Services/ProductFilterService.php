@@ -7,7 +7,7 @@ use App\Models\Product;
 
 class ProductFilterService
 {
-    public function categoryFilter($category_id = null, $color_id = null, $size_id = null)
+    public function filter($category_id = null, $color_id = null, $size_id = null)
     {
         if (!empty($category_id or $color_id or $size_id)) {
             $query = Product::query();
@@ -29,7 +29,8 @@ class ProductFilterService
             }
 
             $products = $query->get();
-        }else {
+
+        } else {
             $products = Product::all();
         }
 

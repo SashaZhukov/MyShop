@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('comment');
             $table->text('user_name');
-            $table->integer('evaluation');
+            $table->integer('rating');
             $table->integer('product_id');
             $table->timestamps();
         });

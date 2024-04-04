@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('color_id');
-            $table->boolean('status');
 
             $table->index('product_id', 'product_idx');
             $table->index('color_id', 'color_idx');
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('_product_color');
+        Schema::dropIfExists('product_color');
     }
 };

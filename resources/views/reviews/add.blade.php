@@ -6,7 +6,7 @@
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-6" action="{{ route('review.store') }}" method="POST">
+        <form class="space-y-6" action="{{ route('review.store', $product->id) }}" method="POST">
             @csrf
 
             <div>
@@ -23,7 +23,7 @@
                 <div class="flex items-center justify-between">
                     <label class="block text-sm font-medium leading-6 text-gray-900">Your evaluation</label>
                 </div>
-                <select name="evaluation">
+                <select name="rating">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>

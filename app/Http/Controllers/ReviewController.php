@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReviewsRequest;
 use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -13,14 +14,14 @@ class ReviewController extends Controller
         return view('reviews.add', compact('product'));
     }
 
-    public function store( Request $request)
+    public function store(ReviewsRequest $request, $productId)
     {
-        $newReview = $request->validate([
-            'comment' => 'required',
-            'user_name' => 'required',
-            'evaluation' => 'required',
-            'product_id' => 'required',
-        ]);
+         $newReview = [
+             'comment' => $request->input('comment'),
+             'user_name' => $request->input('user_name'),
+             'rating' => $request->input('rating'),
+             'product_id' => $productId,
+         ];
 
         Review::create($newReview);
         return redirect()->route('product.show', $request->product_id);
