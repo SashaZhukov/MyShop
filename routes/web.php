@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\{ProfileController,
-CurrencyController,
-ProductController,
-HomePageController,
-ReviewController,
-CartController};
+use App\Http\Controllers\{
+    OrderController,
+    ProfileController,
+    CurrencyController,
+    ProductController,
+    HomePageController,
+    ReviewController,
+    CartController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,9 +34,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/review/add/{product}', [ReviewController::class, 'create'])->name('review.create');
     Route::post('/review/store{productId}', [ReviewController::class, 'store'])->name('review.store');
-    Route::post('cart/add{productId}', [CartController::class, 'addToCart'])->name('add.product.toCart');
-    Route::delete('cart/remove{productId}', [CartController::class, 'remove'])->name('product.remove');
+    Route::post('/cart/add{productId}', [CartController::class, 'addToCart'])->name('add.product.toCart');
+    Route::delete('/cart/remove{productId}', [CartController::class, 'remove'])->name('product.remove');
+    Route::get('/cart/checkout', [OrderController::class, 'index'])->name('product.checkoutForm');
+    Route::post('/cart/checkout', [OrderController::class, 'orderAdd'])->name('order.add');
 });
+
+
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 

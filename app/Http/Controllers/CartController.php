@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Models\Currency;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,6 +62,10 @@ class CartController extends Controller
         } else {
             unset($cart[$productId]);
             Session::put('cart', $cart);
+        }
+
+        if (count($cart) === 0) {
+            Session::forget('cart');
         }
 
         return redirect()->route('cart.index');

@@ -124,7 +124,6 @@
                         <div class="mt-4">
                             <input type="number" name="quantity" value="1" min="1" max="20">
                         </div>
-                        <input type="hidden" name="name" value="{{ $product->name }}">
                         <div class="mt-10">
                             <button type="submit" class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Add to bag</button>
                         </div>

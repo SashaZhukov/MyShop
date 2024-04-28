@@ -38,6 +38,11 @@ class Product extends Model
 
     public function category()
     {
-        $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class);
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'orderProduct', 'product_id', 'order_id')->withPivot('quantity');
     }
 }
