@@ -14,7 +14,7 @@ class OrdersListController extends Controller
 
         $orders = Order::where('user_id', auth()->user()->id)->where('status', '!=', 'received')->get();
 
-        return view('myOrder.orders', compact('currency', 'currencyActive', 'orders'));
+        return view('orders.orders', compact('currency', 'currencyActive', 'orders'));
     }
 
 }

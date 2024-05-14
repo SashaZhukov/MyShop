@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\{
+    OrdersListController,
     OrderController,
     ProfileController,
     CurrencyController,
@@ -38,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/cart/remove{productId}', [CartController::class, 'remove'])->name('product.remove');
     Route::get('/cart/checkout', [OrderController::class, 'index'])->name('product.checkoutForm');
     Route::post('/cart/checkout', [OrderController::class, 'orderAdd'])->name('order.add');
+    Route::get('/orders', [OrdersListController::class, 'index'])->name('orders.list');
 });
 
 
