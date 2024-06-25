@@ -36,6 +36,7 @@ class ProductController extends Controller
     {
         $currencyActive = Currency::find($request->session()->get('currencies'));
         $currency = Currency::all()->count();
+
         $status = Product::find($product->id)->status;
         $sizesId = ProductSize::where('product_id', $product->id)->pluck('size_id');
         $sizes = Size::find($sizesId);
@@ -61,7 +62,6 @@ class ProductController extends Controller
             ->with('avgRating', $avgRating)
             ->with('ratingPercentage', $ratingPercentage)
             ->with('countReviewsForProduct', $countReviewsForProduct);
-
     }
 
 }
