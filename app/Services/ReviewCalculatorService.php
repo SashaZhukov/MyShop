@@ -27,9 +27,8 @@ class ReviewCalculatorService
                 $ratingsPercentage[$rating] = $percentage;
             }
 
-            $this->calculateInfo = ['ratingsPercentage' => $ratingsPercentage, 'avgRating' => $avgRating];
+            $calculateInfo = ['ratingsPercentage' => $ratingsPercentage, 'avgRating' => $avgRating];
 
-            return $this->calculateInfo;
-
+            return $calculateInfo;
     }
 }
