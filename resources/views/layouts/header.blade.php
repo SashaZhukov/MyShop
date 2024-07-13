@@ -44,7 +44,7 @@
                 @if( auth()->check())
                     <div class="ml-auto flex items-center">
                     <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                        <a href="" class="text-sm font-medium text-gray-700 hover:text-gray-800">Orders</a>
+                        <a href="{{ CheckUserOrders() ? route('orders.list') : '' }}" class="text-sm font-medium text-gray-700 hover:text-gray-800">Orders</a>
                     </div>
                     <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                         <a href="{{ route('profile.edit') }}" class=" ml-4 text-sm font-medium text-gray-700 hover:text-gray-800">Profile</a>
