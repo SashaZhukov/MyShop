@@ -22,10 +22,10 @@ class ReviewsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'comment' => 'required',
-            'user_name' => 'required',
-            'rating' => 'required',
-            'product_id' => 'required',
+            'comment' => ['required'],
+            'user_name' => ['required'],
+            'rating' => ['required'],
+            'product_id' => ['required'],
         ];
     }
 }

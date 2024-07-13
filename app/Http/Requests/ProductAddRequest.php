@@ -22,13 +22,13 @@ class ProductAddRequest extends FormRequest
     public function rules(): array
     {
         return [
-//            'image' => 'required|image:jpeg, jpg, png, svg',
-//            'name' => 'required|alpha_dash:ascii',
-//            'price' => 'required|integer',
-//            'description' => 'required|alpha_dash:ascii|min:16|max:500',
-//            'color' => 'required|array',
-//            'size' => 'required|array',
-//            'category' => 'required'
+            'image' => ['required|image:jpeg, jpg, png, svg'],
+            'name' => ['required|alpha_dash:ascii'],
+            'price' => ['required|integer'],
+            'description' => ['required|alpha_dash:ascii|min:16|max:500'],
+            'color' => ['required|array'],
+            'size' => ['required|array'],
+            'category' => ['required']
         ];
     }
 
